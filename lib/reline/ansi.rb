@@ -26,9 +26,13 @@ class Reline::ANSI
   @@buf = []
   def self.getc
     unless @@buf.empty?
-      return @@buf.shift
+      r = @@buf.shift
+      $stderr.puts r.inspect
+      return r
     end
-    @@input.getbyte
+    r = @@input.getbyte
+    $stderr.puts r.inspect
+    r
   end
 
   def self.ungetc(c)
